@@ -1,4 +1,4 @@
-package com.example.codingtest;
+package com.example.codingtest.inflearn1;
 
 import java.util.Scanner;
 
@@ -8,8 +8,13 @@ public class Problem0101 {
         String str = sc.nextLine().toLowerCase();
         Character condition = sc.nextLine().toLowerCase().charAt(0);
         int result = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == condition) {
+//        for (int i = 0; i < str.length(); i++) {
+//            if (str.charAt(i) == condition) {
+//                result++;
+//            }
+//        }
+        for (char x : str.toCharArray()) {
+            if(x == condition) {
                 result++;
             }
         }
