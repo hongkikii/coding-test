@@ -2,7 +2,7 @@ package com.example.codingtest.inflearn1;
 
 import java.util.Scanner;
 
-public class Problem0101 {
+public class Q0101 {
     public static void Main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine().toLowerCase();
