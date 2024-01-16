@@ -3,7 +3,7 @@ package codingtest.inflearn1;
 import java.util.Scanner;
 
 public class Q0101 {
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine().toLowerCase();
         Character condition = sc.nextLine().toLowerCase().charAt(0);

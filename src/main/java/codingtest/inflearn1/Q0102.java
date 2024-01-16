@@ -3,7 +3,7 @@ package codingtest.inflearn1;
 import java.util.Scanner;
 
 public class Q0102 {
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         String result = "";
