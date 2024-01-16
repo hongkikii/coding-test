@@ -6,12 +6,19 @@ public class Q0104 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int loop = sc.nextInt(); // 공백이나 개행 전까지 읽음, 개행 문자를 읽지 않음 = 남아 있음
-        sc.nextLine(); // 개행 문자 소비
         for (int i = 0; i < loop; i++) {
-            String str = sc.nextLine();
-            // String(정적) -> 변경 시 새로운 객체 생성, StringBuilder(동적) -> 변경 시 동일 객체 내에서 조작
-            StringBuilder stringBuilder = new StringBuilder(str).reverse();
-            System.out.println(stringBuilder); // 객체의 toString() 메소드 자동으로 호출
+            String str = sc.next(); // 공백 문자를 기준으로 다음 토큰 읽음
+            int left = 0;
+            int right = str.length() - 1;
+            char[] chars = str.toCharArray();
+            while (left < right) {
+                char tmp = chars[left];
+                chars[left] = chars[right];
+                chars[right] = tmp;
+                left++;
+                right--;
+            }
+            System.out.println(String.valueOf(chars));
         }
     }
 }
