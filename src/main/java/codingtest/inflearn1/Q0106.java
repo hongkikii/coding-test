@@ -7,9 +7,9 @@ public class Q0106 {
         Scanner sc = new Scanner(System.in);
         String readLine = sc.nextLine();
         String result = "";
-        for (char c : readLine.toCharArray()) {
-            if (!result.contains(String.valueOf(c))) {
-                result += c;
+        for (int i = 0; i < readLine.length(); i++) {
+            if (readLine.indexOf(readLine.charAt(i)) == i) {
+                result += readLine.charAt(i);
             }
         }
         System.out.println(result);
