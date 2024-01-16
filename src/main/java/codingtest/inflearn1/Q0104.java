@@ -9,6 +9,7 @@ public class Q0104 {
         sc.nextLine(); // 개행 문자 소비
         for (int i = 0; i < loop; i++) {
             String str = sc.nextLine();
+            // String(정적) -> 변경 시 새로운 객체 생성, StringBuilder(동적) -> 변경 시 동일 객체 내에서 조작
             StringBuilder stringBuilder = new StringBuilder(str).reverse();
             System.out.println(stringBuilder); // 객체의 toString() 메소드 자동으로 호출
         }
