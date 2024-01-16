@@ -9,13 +9,19 @@ public class Q0105 {
         int left = 0;
         int right = chars.length - 1;
         while (left < right) {
+            if (!isAlphabet(chars[left])) {
+                left++;
+            }
+            if (!isAlphabet(chars[right])) {
+                right--;
+            }
             if (isAlphabet(chars[left]) && isAlphabet(chars[right])) {
                 char tmp = chars[left];
                 chars[left] = chars[right];
                 chars[right] = tmp;
+                left++;
+                right--;
             }
-            left++;
-            right--;
         }
         System.out.print(chars);
     }
