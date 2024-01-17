@@ -12,6 +12,7 @@ public class Q0108 {
         while (left < right) {
             if (!isLowerCase(line.charAt(left))) {
                 left++;
+                continue;
             }
             if (!isLowerCase(line.charAt(right))) {
                 right--;
