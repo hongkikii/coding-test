@@ -5,10 +5,13 @@ import java.util.Scanner;
 public class Q09 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String line = sc.nextLine().replaceAll("[^0-9]", "");
-        while (line.charAt(0) == '0') {
-            line = line.substring(1);
+        String readLine = sc.nextLine();
+        int result = 0;
+        for (char c : readLine.toCharArray()) {
+            if (c >= 48 && c <= 57) {
+                result = result * 10 + (c - 48);
+            }
         }
-        System.out.println(line);
+        System.out.println(result);
     }
 }
