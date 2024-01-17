@@ -5,14 +5,12 @@ import java.util.Scanner;
 public class Q0107 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String line = sc.nextLine().toLowerCase();
-        int length = line.length();
-        for (int i = 0; i < length / 2; i++) {
-            if (line.charAt(i) != line.charAt(length - 1 - i)) {
-                System.out.println("NO");
-                return;
-            }
+        String line = sc.nextLine();
+        String reverseLine = new StringBuilder(line).reverse().toString();
+        if (line.equalsIgnoreCase(reverseLine)) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
         }
-        System.out.println("YES");
     }
 }
