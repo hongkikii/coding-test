@@ -1,8 +1,8 @@
-package codingtest.inflearn1;
+package codingtest.inflearn1.section1;
 
 import java.util.Scanner;
 
-public class Q0104 {
+public class Q04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int loop = sc.nextInt(); // 공백이나 개행 전까지 읽음, 개행 문자를 읽지 않음 = 남아 있음
