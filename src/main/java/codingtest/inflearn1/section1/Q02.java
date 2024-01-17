@@ -1,8 +1,8 @@
-package codingtest.inflearn1;
+package codingtest.inflearn1.section1;
 
 import java.util.Scanner;
 
-public class Q0102 {
+public class Q02 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
