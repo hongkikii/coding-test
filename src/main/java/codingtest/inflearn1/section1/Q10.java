@@ -3,36 +3,35 @@ package codingtest.inflearn1.section1;
 import java.util.Scanner;
 
 public class Q10 {
-    static char[] chars;
-    static int[] lengths;
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        chars = sc.next().toCharArray();
+        String line = sc.next();
         char target = sc.next().charAt(0);
-        lengths = new int[chars.length];
+        int[] result = new int[line.length()];
+        int min = 1000;
 
-        for (int i = 0; i < lengths.length; i++) {
-            lengths[i] = 1000;
+        for (int i = 0; i < line.length(); i++) {
+            if (line.charAt(i) == target) {
+                min = 0;
+            } else {
+                min++;
+            }
+            result[i] = min;
         }
 
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == target) {
-                compare(i);
+        min = 1000;
+
+        for (int i = line.length() - 1; i >= 0; i--) {
+            if (line.charAt(i) == target) {
+                min = 0;
+            } else {
+                min++;
+                result[i] = Math.min(result[i], min);
             }
         }
 
-        for (int v : lengths) {
+        for (int v : result) {
             System.out.print(v + " ");
-        }
-    }
-
-    private static void compare(int index) {
-        for (int i = 0; i < chars.length; i++) {
-            int newLength = Math.abs(index - i);
-            if (newLength < lengths[i]) {
-                lengths[i] = newLength;
-            }
         }
     }
 }
