@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Q12 {
     public static void main(String[] args) {
-        // 4개씩 끊기, 저장
+        // 7개씩 끊기, 저장
         Scanner sc = new Scanner(System.in);
         int index = sc.nextInt();
         sc.nextLine();
