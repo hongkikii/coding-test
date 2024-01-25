@@ -20,20 +20,14 @@ public class Q03 {
     }
 
     private static void game(int a, int b) {
-        if (a == b) {
+        if (a == b) { // 비기는 경우
             System.out.println("D");
         }
-        if (a - b == 1) {
+        else if (a - b == 1 || b - a == 2) { // A가 이기는 경우
             System.out.println("A");
         }
-        if (a - b == 2) {
+        else {
             System.out.println("B");
-        }
-        if (b - a == 1) {
-            System.out.println("B");
-        }
-        if (b - a == 2) {
-            System.out.println("A");
         }
     }
 }
