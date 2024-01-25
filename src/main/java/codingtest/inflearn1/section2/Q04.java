@@ -6,16 +6,15 @@ public class Q04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int count = sc.nextInt();
-        int[] sequence = new int[count];
-        sequence[0] = 1;
-        sequence[1] = 1;
-
+        int a = 1;
+        int b = 1;
+        int c;
+        System.out.print(a + " " + b + " ");
         for (int i = 2; i < count; i++) {
-            sequence[i] = sequence[i - 1] + sequence[i - 2];
-        }
-
-        for (int v : sequence) {
-            System.out.print(v + " ");
+            c = a + b;
+            System.out.print(c + " ");
+            a = b;
+            b = c;
         }
     }
 }
