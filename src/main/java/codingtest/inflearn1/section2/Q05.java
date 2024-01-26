@@ -7,25 +7,16 @@ public class Q05 {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int[] primeNumbers = new int[N+1];
-        primeNumbers[0] = -1;
-        primeNumbers[1] = -1;
+        int result = 0;
 
         for (int i = 2; i <= N; i++) {
-            int count = 2;
-            int multiple = i * count;
-            while (multiple <= N) {
-                primeNumbers[multiple] = -1;
-                count++;
-                multiple = i * count;
-            }
-        }
-        int result = 0;
-        for (int v : primeNumbers) {
-            if (v != -1) {
+            if (primeNumbers[i] == 0) {
                 result++;
+                for (int j = i; j <= N; j = j + i) {
+                    primeNumbers[j] = 1;
+                }
             }
         }
-
         System.out.println(result);
     }
 }
