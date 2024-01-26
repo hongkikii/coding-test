@@ -9,32 +9,30 @@ public class Q06 {
         int[] numbers = new int[N];
 
         for (int i = 0; i < N; i++) {
-            String token = sc.next();
-            StringBuilder reverse = new StringBuilder(token).reverse();
-            numbers[i] = Integer.parseInt(reverse.toString());
+            int number = sc.nextInt();
+            int reverse = 0;
+            while (number > 0) {
+                int r = number % 10;
+                reverse = reverse * 10 + r;
+                number /= 10;
+            }
+            numbers[i] = reverse;
         }
 
         for (int i = 0; i < N; i++) {
-            if (isPrimeNumber(numbers[i])) {
+            if (isPrime(numbers[i])) {
                 System.out.print(numbers[i] + " ");
             }
         }
     }
 
-    private static boolean isPrimeNumber(int number) {
+    private static boolean isPrime(int number) {
         if (number == 1) {
             return false;
         }
-        int[] primeNumbers = new int[number + 1];
-
-        for (int i = 2; i <= number-1; i++) {
-            if (primeNumbers[i] == 0) {
-                for (int j = i; j <= number; j = j + i) {
-                    primeNumbers[j] = 1;
-                }
-                if (primeNumbers[number] == 1) {
-                    return false;
-                }
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                return false;
             }
         }
         return true;
