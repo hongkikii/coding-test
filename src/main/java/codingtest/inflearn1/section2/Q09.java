@@ -17,30 +17,23 @@ public class Q09 {
         int max = 0;
         for (int i = 1; i <= N; i++) {
             int row = 0;
-            for (int j = 1; j <= N; j++) {
-                row += A[i][j];
-            }
-            max = Math.max(max, row);
-        }
-
-        for (int i = 1; i <= N; i++) {
             int column = 0;
             for (int j = 1; j <= N; j++) {
+                row += A[i][j];
                 column += A[j][i];
             }
+            max = Math.max(max, row);
             max = Math.max(max, column);
         }
 
         int leftDiagonal = 0;
+        int rightDiagonal = 0;
+
         for (int i = 1; i <= N; i++) {
             leftDiagonal += A[i][i];
-        }
-        max = Math.max(max, leftDiagonal);
-
-        int rightDiagonal = 0;
-        for (int i = 1; i <= N; i++) {
             rightDiagonal += A[i][N - i + 1];
         }
+        max = Math.max(max, leftDiagonal);
         max = Math.max(max, rightDiagonal);
 
         System.out.println(max);
