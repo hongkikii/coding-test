@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Q10 {
     static int[][] A;
+    static int[] dx = new int[]{-1, 0, 1, 0};
+    static int[] dy = new int[]{0, -1, 0, 1};
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -28,17 +30,10 @@ public class Q10 {
     }
 
     private static boolean isMax(int i, int j) {
-        if (A[i][j - 1] >= A[i][j]) {
-            return false;
-        }
-        if (A[i - 1][j] >= A[i][j]) {
-            return false;
-        }
-        if (A[i + 1][j] >= A[i][j]) {
-            return false;
-        }
-        if (A[i][j + 1] >= A[i][j]) {
-            return false;
+        for (int k = 0; k < 4; k++) {
+            if (A[i + dx[k]][j + dy[k]] >= A[i][j]) {
+                return false;
+            }
         }
         return true;
     }
