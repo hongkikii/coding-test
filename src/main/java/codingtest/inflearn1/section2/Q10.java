@@ -28,16 +28,16 @@ public class Q10 {
     }
 
     private static boolean isMax(int i, int j) {
-        if (A[i][j - 1] > A[i][j]) {
+        if (A[i][j - 1] >= A[i][j]) {
             return false;
         }
-        if (A[i - 1][j] > A[i][j]) {
+        if (A[i - 1][j] >= A[i][j]) {
             return false;
         }
-        if (A[i + 1][j] > A[i][j]) {
+        if (A[i + 1][j] >= A[i][j]) {
             return false;
         }
-        if (A[i][j + 1] > A[i][j]) {
+        if (A[i][j + 1] >= A[i][j]) {
             return false;
         }
         return true;
