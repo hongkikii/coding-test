@@ -7,9 +7,9 @@ public class Q11 {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         int[][] A = new int[N + 1][6];
-        int[][] school = new int[N + 1][6];
         int max = 0;
-        int idx = 0;
+        int count = 0;
+        int result = 0;
 
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= 5; j++) {
@@ -17,31 +17,21 @@ public class Q11 {
             }
         }
 
-        int row = 1;
-        for (int i = 1; i <= 5; i++) {
-            for (int j = 1; j <= N; j++) {
-                if (j == row) {
-                    continue;
-                }
-                if (A[j][i] == A[row][i]) {
-                    school[row][i]++;
-                }
-            }
-            row++;
-        }
-
-        int count = 0;
         for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= 5; j++) {
-                if (school[i][j] > 0) {
-                    count++;
+            for (int j = 1; j <= N; j++) {
+                for (int k = 1; k <= 5; k++) {
+                    if (A[i][k] == A[j][k]) {
+                        count++;
+                        break;
+                    }
                 }
             }
             if (count > max) {
-                idx = i;
+                result = i;
+                max = count;
             }
             count = 0;
         }
-        System.out.println(idx);
+        System.out.println(result);
     }
 }
