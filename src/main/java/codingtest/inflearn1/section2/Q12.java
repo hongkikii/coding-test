@@ -8,8 +8,8 @@ public class Q12 {
         int N = sc.nextInt();
         int M = sc.nextInt();
         int[][] A = new int[M + 1][N + 1];
+        int count = 0;
         int result = 0;
-        boolean isEqual;
 
         for (int i = 1; i <= M; i++) {
             for (int j = 1; j <= N; j++) {
@@ -17,31 +17,25 @@ public class Q12 {
             }
         }
 
-        for (int i = 1; i <= N - 1; i++) {
-            int x = A[1][i];
-            for (int j = i + 1; j <= N; j++) {
-                int y = A[1][j];
-                isEqual = true;
-                for (int k = 2; k <= M; k++) {
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                count = 0;
+                for (int k = 1; k <= M; k++) {
                     int ix = 0;
                     int iy = 0;
                     for (int l = 1; l <= N; l++) {
-                        if (A[k][l] == x) {
+                        if (A[k][l] == i) {
                             ix = l;
                         }
-                        if (A[k][l] == y) {
+                        if (A[k][l] == j) {
                             iy = l;
                         }
-                        if (ix != 0 && iy != 0) {
-                            break;
-                        }
                     }
-                    if (ix > iy) {
-                        isEqual = false;
-                        break;
+                    if (ix < iy) {
+                        count++;
                     }
                 }
-                if (isEqual) {
+                if (count == M) {
                     result++;
                 }
             }
