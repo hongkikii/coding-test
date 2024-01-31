@@ -1,6 +1,5 @@
 package main.java.codingtest.inflearn1.section3;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Q01 {
@@ -19,14 +18,32 @@ public class Q01 {
         }
 
         int[] result = new int[N1 + N2];
-        for (int i = 0; i < N1; i++) {
-            result[i] = A1[i];
-        }
-        for (int i = 0; i < N2; i++) {
-            result[N1 + i] = A2[i];
+        int p1 = 0;
+        int p2 = 0;
+
+        for (int i = 0; i < N1 + N2; i++) {
+            if (p1 < N1 && p2 < N2) {
+                if (A1[p1] < A2[p2]) {
+                    result[i] = A1[p1];
+                    p1++;
+                }
+                else {
+                    result[i] = A2[p2];
+                    p2++;
+                }
+            }
+            else {
+                if (p1 < N1) {
+                    result[i] = A1[p1];
+                    p1++;
+                }
+                if (p2 < N2) {
+                    result[i] = A2[p2];
+                    p2++;
+                }
+            }
         }
 
-        Arrays.sort(result);
         for (int v : result) {
             System.out.print(v + " ");
         }
