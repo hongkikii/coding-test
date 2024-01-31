@@ -32,13 +32,11 @@ public class Q02 {
                 result.add(A1[p1++]);
                 p2++;
             }
+            else if(A1[p1] < A2[p2]) {
+                p1++;
+            }
             else {
-                if (A1[p1] < A2[p2]) {
-                    p1++;
-                }
-                if (A2[p2] < A1[p1]) {
-                    p2++;
-                }
+                p2++;
             }
         }
 
