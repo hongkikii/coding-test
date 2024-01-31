@@ -1,5 +1,7 @@
 package main.java.codingtest.inflearn1.section3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Q01 {
@@ -17,31 +19,23 @@ public class Q01 {
             A2[i] = sc.nextInt();
         }
 
-        int[] result = new int[N1 + N2];
+        List<Integer> result = new ArrayList<>();
         int p1 = 0;
         int p2 = 0;
 
-        for (int i = 0; i < N1 + N2; i++) {
-            if (p1 < N1 && p2 < N2) {
-                if (A1[p1] < A2[p2]) {
-                    result[i] = A1[p1];
-                    p1++;
-                }
-                else {
-                    result[i] = A2[p2];
-                    p2++;
-                }
+        while (p1 < N1 && p2 < N2) {
+            if (A1[p1] < A2[p2]) {
+                result.add(A1[p1++]);
+            } else {
+                result.add(A2[p2++]);
             }
-            else {
-                if (p1 < N1) {
-                    result[i] = A1[p1];
-                    p1++;
-                }
-                if (p2 < N2) {
-                    result[i] = A2[p2];
-                    p2++;
-                }
-            }
+        }
+
+        while (p1 < N1) {
+            result.add(A1[p1++]);
+        }
+        while (p2 < N2) {
+            result.add(A2[p2++]);
         }
 
         for (int v : result) {
