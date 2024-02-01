@@ -16,7 +16,8 @@ public class Q05 {
         int p2 = 0;
         int sum = 0;
         int count = 0;
-        for (p2 = 1; p2 < N; p2++) {
+        int loop = N / 2 + 1;
+        for (p2 = 1; p2 <= loop; p2++) {
             sum += A[p2];
             if (sum == N) {
                 count++;
