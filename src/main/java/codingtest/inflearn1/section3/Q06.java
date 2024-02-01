@@ -8,44 +8,25 @@ public class Q06 {
         int N = sc.nextInt();
         int K = sc.nextInt();
         int[] A = new int[N];
-
         for (int i = 0; i < N; i++) {
             A[i] = sc.nextInt();
         }
 
-        int zeroCount = 0;
+        int p1 = 0;
+        int count = 0; // 1로 바꾼 횟수
         int length = 0;
-        int zeroLeftIdx = 0;
-        int zeroRightIdx = 0;
-        int leftIdx = 0;
-        int rightIdx = 0;
 
-        while (rightIdx < N) {
-            if (A[rightIdx] == 0) {
-                zeroCount++;
-                if (zeroCount == 1) {
-                    zeroLeftIdx = rightIdx;
-                }
-                if (zeroCount == 2) {
-                    zeroRightIdx = rightIdx;
-                    rightIdx++;
-                    break;
-                }
+        for (int p2 = 0; p2 < N; p2++) {
+            if (A[p2] == 0) {
+                count++;
             }
-            rightIdx++;
-        }
-
-        while (rightIdx < N) {
-            if (A[rightIdx] == 1) {
-                int tmp = rightIdx - leftIdx + 1;
-                length = Math.max(length, tmp);
-                rightIdx++;
-                continue;
+            while (count > K) {
+                if (A[p1] == 0) {
+                    count--;
+                }
+                p1++;
             }
-            leftIdx = zeroLeftIdx + 1; // leftIdx 수정 규칙을 모르겠다.
-            zeroLeftIdx = zeroRightIdx;
-            zeroRightIdx = rightIdx;
-            rightIdx++;
+            length = Math.max(p2 - p1 + 1, length);
         }
         System.out.println(length);
     }
