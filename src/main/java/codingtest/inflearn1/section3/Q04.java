@@ -16,31 +16,22 @@ public class Q04 {
         int p1 = 0;
         int p2 = 0;
         int count = 0;
-        int sum = A[0];
+        int sum = 0;
 
-        while (p1 < N && p2 < N) {
+        for (p2 = 0; p2 < N; p2++) {
+            sum += A[p2];
             if (sum == M) {
                 count++;
-                sum -= A[p1];
-                p1++;
-                p2++;
-                if (p1 < N && p2 < N) {
-                    sum += A[p2];
-                }
-            } else if (sum < M) {
-                p2++;
-                if (p2 < N) {
-                    sum += A[p2];
-                }
-            } else if (sum > M) {
-                sum -= A[p1];
-                p1++;
-                if (p1 > p2) {
-                    p2 = p1;
+            }
+            if (sum > M) {
+                while (sum > M) {
+                    sum -= A[p1++];
+                    if (sum == M) {
+                        count++;
+                    }
                 }
             }
         }
-
         System.out.println(count);
     }
 }
