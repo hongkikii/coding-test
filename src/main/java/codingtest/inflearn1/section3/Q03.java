@@ -15,7 +15,7 @@ public class Q03 {
             A[i] = sc.nextInt();
         }
 
-        for (int i = 0; i <= K - 1; i++) {
+        for (int i = 0; i < K; i++) {
             sum += A[i];
         }
         max = sum;
