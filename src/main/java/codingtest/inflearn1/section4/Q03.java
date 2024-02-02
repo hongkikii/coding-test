@@ -15,19 +15,19 @@ public class Q03 {
         for (int i = 0; i < N; i++) {
             A[i] = sc.nextInt();
         }
-        for (int i = 0; i < K; i++) {
+        for (int i = 0; i < K - 1; i++) {
             map.put(A[i], map.getOrDefault(A[i], 0) + 1);
         }
-        System.out.print(map.size() + " ");
 
         int p1 = 0;
-        for (int p2 = K; p2 < N; p2++) {
-            map.put(A[p1], map.getOrDefault(A[p1], 0) - 1);
+        for (int p2 = K - 1; p2 < N; p2++) {
+            map.put(A[p2], map.getOrDefault(A[p2], 0) + 1);
+            System.out.print(map.size() + " ");
+
+            map.put(A[p1], map.get(A[p1]) - 1);
             if (map.get(A[p1]) == 0) {
                 map.remove(A[p1]);
             }
-            map.put(A[p2], map.getOrDefault(A[p2], 0) + 1);
-            System.out.print(map.size() + " ");
             p1++;
         }
     }
