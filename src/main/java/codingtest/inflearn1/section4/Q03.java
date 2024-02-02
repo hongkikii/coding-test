@@ -10,17 +10,25 @@ public class Q03 {
         int N = sc.nextInt();
         int K = sc.nextInt();
         int[] A = new int[N];
+        Map<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < N; i++) {
             A[i] = sc.nextInt();
         }
+        for (int i = 0; i < K; i++) {
+            map.put(A[i], map.getOrDefault(A[i], 0) + 1);
+        }
+        System.out.print(map.size() + " ");
 
-        for (int i = 0; i < N - K + 1; i++) {
-            Map<Integer, Integer> map = new HashMap<>();
-            for (int j = 0; j < K; j++) {
-                map.put(A[i + j], map.getOrDefault(A[i + j], 0) + 1);
+        int p1 = 0;
+        for (int p2 = K; p2 < N; p2++) {
+            map.put(A[p1], map.getOrDefault(A[p1], 0) - 1);
+            if (map.get(A[p1]) == 0) {
+                map.remove(A[p1]);
             }
+            map.put(A[p2], map.getOrDefault(A[p2], 0) + 1);
             System.out.print(map.size() + " ");
+            p1++;
         }
     }
 }
