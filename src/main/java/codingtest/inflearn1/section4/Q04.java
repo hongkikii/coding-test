@@ -20,18 +20,11 @@ public class Q04 {
             compareMap.put(S[i], compareMap.getOrDefault(S[i], 0) + 1);
         }
 
-        boolean result = true;
         int left = 0;
         int count = 0;
         for (int right = T.length - 1; right < S.length; right++) {
             compareMap.put(S[right], compareMap.getOrDefault(S[right], 0) + 1);
-            for (char c : compareMap.keySet()) {
-                if (compareMap.get(c) != TMap.get(c)) {
-                    result = false;
-                    break;
-                }
-            }
-            if (compareMap.size() == TMap.size() && result) {
+            if (TMap.equals(compareMap)) {
                 count++;
             }
             compareMap.put(S[left], compareMap.get(S[left]) - 1);
@@ -39,7 +32,6 @@ public class Q04 {
                 compareMap.remove(S[left]);
             }
             left++;
-            result = true;
         }
         System.out.println(count);
     }
