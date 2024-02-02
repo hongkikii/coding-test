@@ -9,23 +9,21 @@ public class Q02 {
         Scanner sc = new Scanner(System.in);
         char[] A = sc.next().toCharArray();
         char[] B = sc.next().toCharArray();
+        boolean result = true;
 
-        Map<Character, Integer> As = new HashMap<>();
-        Map<Character, Integer> Bs = new HashMap<>();
+        Map<Character, Integer> AMap = new HashMap<>();
 
         for (char c : A) {
-            As.put(c, As.getOrDefault(c, 0) + 1);
+            AMap.put(c, AMap.getOrDefault(c, 0) + 1);
         }
 
         for (char c : B) {
-            Bs.put(c, Bs.getOrDefault(c, 0) + 1);
-        }
-
-        boolean result = true;
-        for (char c : As.keySet()) {
-            if (As.get(c) != Bs.get(c)) {
+            if (!AMap.containsKey(c) || AMap.get(c) == 0) {
                 result = false;
                 break;
+            }
+            else {
+                AMap.put(c, AMap.get(c) - 1);
             }
         }
 
