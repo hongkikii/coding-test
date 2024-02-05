@@ -7,22 +7,18 @@ public class Q02 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         char[] chars = sc.nextLine().toCharArray();
-        Stack<Integer> stack = new Stack<>();
-        String result = "";
+        Stack<Character> stack = new Stack<>();
 
         for (char c : chars) {
-            if (c == '(') {
-                stack.add(1);
-            }
-            else if (c == ')') {
-                stack.pop();
-            }
-            else {
-                if (stack.isEmpty()) {
-                    result += c;
-                }
+            if (c == ')') {
+                while (stack.pop() != '(');
+            } else {
+                stack.push(c);
             }
         }
-        System.out.println(result);
+
+        for (int i = 0; i < stack.size(); i++) {
+            System.out.print(stack.get(i));
+        }
     }
 }
