@@ -10,7 +10,7 @@ public class Q04 {
         Stack<Integer> stack = new Stack<>();
 
         for (char c : chars) {
-            if (c >= 48 && c <= 57) {
+            if (Character.isDigit(c)) {
                 stack.push(c - 48);
             }
             else {
