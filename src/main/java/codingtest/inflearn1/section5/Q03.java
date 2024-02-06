@@ -20,21 +20,19 @@ public class Q03 {
         int M = sc.nextInt();
         for (int i = 0; i < M; i++) {
             int column = sc.nextInt();
-            int pick = 0;
             for (int j = 1; j <= N; j++) {
-                if (A[j][column] == 0) {
-                    continue;
+                if (A[j][column] != 0) {
+                    int pick = A[j][column];
+                    A[j][column] = 0;
+                    if (!stack.isEmpty() && stack.peek() == pick) {
+                        stack.pop();
+                        count += 2;
+                    }
+                    else {
+                        stack.push(pick);
+                    }
+                    break;
                 }
-                pick = A[j][column];
-                A[j][column] = 0;
-                break;
-            }
-            if (!stack.isEmpty() && stack.peek() == pick) {
-                stack.pop();
-                count += 2;
-            }
-            else if (pick != 0) {
-                stack.push(pick);
             }
         }
         System.out.println(count);
