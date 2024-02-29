@@ -12,17 +12,22 @@ public class Q06 {
 
         Queue<Integer> queue = new LinkedList<>();
         for(int i=1; i<=N; i++) {
-            queue.add(i);
+            queue.offer(i);
+            /**
+             * add() vs offer()
+             * queue 용량 부족 시,
+             * add()는 예외를 터뜨림(IllegalStateException), Collection.add(), 용량 제한 없는 경우에 사용
+             * offer()는 false를 반환함, 용량 제한 있는 경우에 사용
+             * add()는 false를 반환하는 경우가 없음
+             */
         }
 
         while(queue.size() > 1) {
             for(int i=0; i<K-1; i++) {
-                int tmp = queue.poll();
-                queue.add(tmp);
+                queue.offer(queue.poll());
             }
             queue.poll();
         }
-
         System.out.println(queue.poll());
     }
 }
