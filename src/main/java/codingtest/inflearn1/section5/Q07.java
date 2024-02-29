@@ -12,21 +12,25 @@ public class Q07 {
         char[] sequence = sc.nextLine().toCharArray();
         char[] plan = sc.nextLine().toCharArray();
         Queue<Character> queue = new LinkedList<>();
-        String result = "NO";
+        String result = "YES";
 
 
         for(char c : sequence) {
             queue.offer(c);
         }
 
+        // 순서가 다른 경우
         for(char c : plan) {
-            if(queue.size() ==0) {
-                result = "YES";
-                break;
+            if (queue.contains(c)) {
+                if(c != queue.poll()) {
+                    result = "NO";
+                }
             }
-            if(c == queue.peek()) {
-                queue.poll();
-            }
+        }
+
+        // 순서는 맞지만, 이후 과목을 계획에 포함시키지 않은 경우
+        if(!queue.isEmpty()) {
+            result = "NO";
         }
 
         System.out.println(result);
