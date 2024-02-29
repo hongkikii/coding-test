@@ -12,25 +12,24 @@ public class Q07 {
         char[] sequence = sc.nextLine().toCharArray();
         char[] plan = sc.nextLine().toCharArray();
         Queue<Character> queue = new LinkedList<>();
+        String result = "NO";
+
+
         for(char c : sequence) {
             queue.offer(c);
         }
 
-        for(int i=0; i<plan.length; i++) {
+        for(char c : plan) {
             if(queue.size() ==0) {
+                result = "YES";
                 break;
             }
-            if(plan[i] == queue.peek()) {
+            if(c == queue.peek()) {
                 queue.poll();
             }
         }
 
-        if(queue.size() == 0) {
-            System.out.println("YES");
-        }
-        else {
-            System.out.println("NO");
-        }
+        System.out.println(result);
 
     }
 
