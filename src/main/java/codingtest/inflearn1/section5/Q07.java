@@ -17,6 +17,9 @@ public class Q07 {
         }
 
         for(int i=0; i<plan.length; i++) {
+            if(queue.size() ==0) {
+                break;
+            }
             if(plan[i] == queue.peek()) {
                 queue.poll();
             }
