@@ -13,18 +13,14 @@ public class Q03 {
         }
 
         for(int i=1; i<N; i++) {
-            if(A[i-1] > A[i]) {
-                int tmp1 = A[i];
-                A[i] = A[i-1];
-                A[i-1] = tmp1;
-                int idx = i-1;
-                while(idx > 0) {
-                    if(A[idx] < A[idx-1]) {
-                        int tmp2 = A[idx];
-                        A[idx] = A[idx-1];
-                        A[idx-1] = tmp2;
-                    }
-                    idx--;
+            int tmp = A[i];
+            for (int j = i - 1; j >= 0; j--) {
+                if (A[j] > tmp) {
+                    A[j + 1] = A[j];
+                    A[j] = tmp;
+                }
+                else {
+                    break;
                 }
             }
         }
