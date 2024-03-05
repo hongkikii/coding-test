@@ -13,7 +13,7 @@ public class Q02 {
         }
 
         for(int j=0; j<N-1; j++) {
-            for(int i=1; i<N-j; i++) {
+            for(int i=1; i<N-j-1; i++) {
                 if(A[i-1] > A[i]) {
                     int tmp = A[i];
                     A[i] = A[i-1];
