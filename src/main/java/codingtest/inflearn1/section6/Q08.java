@@ -16,23 +16,24 @@ public class Q08 {
 
         Arrays.sort(A);
 
-        int idx = findIdx(A, V, 0, A.length-1);
+        int idx = -1;
+        int start = 0;
+        int end = A.length-1;
+
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (A[mid] == V) {
+                idx = mid;
+                break;
+            }
+            else if (A[mid] > V) {
+                end = mid - 1;
+            }
+            else {
+                start = mid + 1;
+            }
+        }
 
         System.out.println(idx+1);
-    }
-
-    public static int findIdx(int[] A, int V, int start, int end) {
-
-        int mid = (start + end) / 2;
-
-        if(A[mid] == V) {
-            return mid;
-        }
-        else if(A[mid] > V) {
-            return findIdx(A, V, start, mid-1);
-        }
-        else {
-            return findIdx(A, V, mid+1, end);
-        }
     }
 }
