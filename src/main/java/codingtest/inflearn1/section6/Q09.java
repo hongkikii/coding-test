@@ -15,12 +15,10 @@ public class Q09 {
 
         int size = 0;
         int result = -1;
-        for(int i=0; i<=A.length-1; i++) {
-            size += A[i];
+        while(result == -1) {
+            size++;
             result = findSize(A, size, M);
-            if(result != -1) break;
         }
-
         System.out.println(result);
     }
 
