@@ -15,7 +15,7 @@ public class Q09 {
 
         int size = 0;
         int result = -1;
-        for(int i=A.length-1; i>=0; i--) {
+        for(int i=0; i<=A.length-1; i++) {
             size += A[i];
             result = findSize(A, size, M);
             if(result != -1) break;
@@ -29,15 +29,16 @@ public class Q09 {
         int idx = 0;
 
         for(int i=0; i<A.length; i++) {
-            if(dvd[idx] + A[i] <= size) {
-                dvd[idx] += A[i];
+            if (A[i] > size) {
+                return -1;
             }
-            else {
+            if(dvd[idx] + A[i] > size) {
                 idx++;
                 if(idx > M-1) {
                     return -1;
                 }
             }
+            dvd[idx] += A[i];
         }
         return size;
     }
