@@ -1,5 +1,6 @@
 package main.java.codingtest.inflearn1.section6;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Q09 {
@@ -13,32 +14,35 @@ public class Q09 {
             A[i] = sc.nextInt();
         }
 
-        int size = 0;
+        int start = Arrays.stream(A).max().getAsInt();
+        int end = Arrays.stream(A).sum();
+
         int result = -1;
-        while(result == -1) {
-            size++;
-            result = findSize(A, size, M);
+        while(start<=end) {
+            int mid = (start + end) / 2;
+            if (count(A, mid) <= M) {
+                end = mid - 1;
+                result = mid;
+            }
+            else {
+                start = mid + 1;
+            }
         }
         System.out.println(result);
     }
 
-    public static int findSize(int[] A, int size, int M) {
-        int[] dvd = new int[M];
-        int idx = 0;
-
-        for(int i=0; i<A.length; i++) {
-            if (A[i] > size) {
-                return -1;
+    public static int count(int[] A, int size) {
+        int count = 1;
+        int sum = 0;
+        for (int x : A) {
+            if (x + sum > size) {
+                count++;
+                sum = x;
             }
-            if(dvd[idx] + A[i] > size) {
-                idx++;
-                if(idx > M-1) {
-                    return -1;
-                }
+            else {
+                sum += x;
             }
-            dvd[idx] += A[i];
         }
-        return size;
+        return count;
     }
-
 }
