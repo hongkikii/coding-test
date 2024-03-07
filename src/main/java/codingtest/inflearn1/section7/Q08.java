@@ -11,26 +11,31 @@ public class Q08 {
         int E = sc.nextInt();
 
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(S + 1);
-        queue.add(S - 1);
-        queue.add(S + 5);
+        int[] check = new int[10001];
+        int[] next = {1, -1, 5};
+        queue.add(S);
+        check[S] = 1;
         int level = 0;
-        int len = 3;
-        boolean find = false;
+        boolean found = false;
 
-        while(!find) {
-            level++;
+        while(!queue.isEmpty()) {
+            int len = queue.size();
             for(int i=0; i<len; i++) {
                 int poll = queue.poll();
                 if(poll == E) {
-                    find = true;
+                    found = true;
                     break;
                 }
-                queue.add(poll + 1);
-                queue.add(poll - 1);
-                queue.add(poll + 5);
+                for (int j = 0; j < next.length; j++) {
+                    int v = poll + next[j];
+                    if (v >= 1 && v <= 10000 && check[v] == 0) {
+                        check[v] = 1;
+                        queue.add(v);
+                    }
+                }
             }
-            len *= 3;
+            if (found) break;
+            level++;
         }
         System.out.println(level);
     }
