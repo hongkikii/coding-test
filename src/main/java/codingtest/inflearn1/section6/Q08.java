@@ -16,20 +16,20 @@ public class Q08 {
 
         Arrays.sort(A);
 
-        int idx = N/2;
-        while(true) {
-            if(A[idx] == V) {
-                break;
-            }
-            else if(V < A[idx]) {
-                idx = idx/2;
-            }
-            else {
-                idx = (N-idx)/2;
-            }
-        }
+        int idx = findIdx(A, V, A.length / 2);
 
         System.out.println(idx+1);
     }
 
+    public static int findIdx(int[] A, int V, int idx) {
+        if(A[idx] == V) {
+            return idx;
+        }
+        else if(A[idx] > V) {
+            return findIdx(A, V, idx/2);
+        }
+        else {
+            return findIdx(A, V, (A.length-idx)/2);
+        }
+    }
 }
