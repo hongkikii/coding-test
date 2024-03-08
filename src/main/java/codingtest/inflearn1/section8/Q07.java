@@ -15,11 +15,9 @@ public class Q07 {
     }
 
     public static int DFS(int n, int r) {
-        if(n == 1) return 1;
-        if(r == 1) return n;
+        if(n == r || r == 0) return 1;
         else {
             return DFS(n-1, r-1) + DFS(n-1, r);
         }
     }
-
 }
