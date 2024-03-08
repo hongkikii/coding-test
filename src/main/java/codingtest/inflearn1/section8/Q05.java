@@ -28,8 +28,7 @@ public class Q05 {
         if(sum == M) answer = Math.min(count, answer);
         else {
             for(int i=0; i<N; i++) {
-                sum+= A[i];
-                DFS(A, sum, count+1);
+                DFS(A, sum+A[i], count+1);
             }
         }
     }
