@@ -1,5 +1,6 @@
 package main.java.codingtest.inflearn1.section8;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Q05 {
@@ -17,7 +18,7 @@ public class Q05 {
         }
 
         M = sc.nextInt();
-
+        Arrays.sort(A);
         DFS(A, 0, 0);
 
         System.out.println(answer);
@@ -25,10 +26,11 @@ public class Q05 {
 
     public static void DFS(int[] A, int sum, int count) {
         if(sum > M) return;
+        if(answer < count) return;
         if(sum == M) answer = Math.min(count, answer);
         else {
-            for(int i=0; i<N; i++) {
-                DFS(A, sum+A[i], count+1);
+            for(int i=N-1; i>=0; i--) {
+                DFS(A, sum + A[i], count + 1);
             }
         }
     }
