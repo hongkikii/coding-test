@@ -26,7 +26,7 @@ public class Q05 {
 
     public static void DFS(int[] A, int sum, int count) {
         if(sum > M) return;
-        if(answer < count) return;
+        if(answer <= count) return;
         if(sum == M) answer = Math.min(count, answer);
         else {
             for(int i=N-1; i>=0; i--) {
