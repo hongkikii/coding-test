@@ -16,9 +16,9 @@ public class Q07 {
     }
 
     public static int DFS(int n, int r) {
+        if(memo[n][r] != 0) return memo[n][r];
         if(n == r || r == 0) return 1;
         else {
-            if(memo[n][r] != 0) return memo[n][r];
             return memo[n][r] = DFS(n-1, r-1) + DFS(n-1, r);
         }
     }
