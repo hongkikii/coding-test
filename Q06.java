@@ -1,5 +1,3 @@
-package main.java.codingtest.inflearn1.section8;
-
 import java.util.Scanner;
 
 public class Q06 {
@@ -29,7 +27,7 @@ public class Q06 {
         }
         else {
             for(int i=0; i<N; i++) {
-                if(!checkA[i]){
+                if(!checkA[i]) {
                     answer[count] = A[i];
                     checkA[i] = true;
                     DFS(answer, count+1);
