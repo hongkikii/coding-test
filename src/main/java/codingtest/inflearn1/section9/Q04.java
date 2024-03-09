@@ -9,14 +9,16 @@ public class Q04 {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
         Queue<Lecture> queue = new PriorityQueue<>();
+        int maxDay = 0;
         for(int i=0; i<N; i++) {
             int money = sc.nextInt();
             int day = sc.nextInt();
             queue.add(new Lecture(money, day));
+            maxDay = Math.max(maxDay, day);
         }
 
         int sum = 0;
-        int[] A = new int[queue.peek().day + 1];
+        int[] A = new int[maxDay + 1];
         while(!queue.isEmpty()) {
             Lecture lecture = queue.poll();
             for(int i=lecture.day; i>=1; i--) {
