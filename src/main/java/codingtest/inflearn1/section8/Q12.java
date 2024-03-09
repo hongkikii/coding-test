@@ -18,6 +18,7 @@ public class Q12 {
         int[] dx = {-1, 0, 1, 0};
         int[] dy = {0, -1, 0, 1};
         int result = -1;
+        boolean flag = false;
 
         for(int i=1; i<=N; i++) {
             for(int j=1; j<=M; j++) {
@@ -30,6 +31,9 @@ public class Q12 {
                         check[i][j] = 1;
                     }
                 }
+                else {
+                    check[i][j] = -1;
+                }
             }
         }
 
@@ -39,26 +43,35 @@ public class Q12 {
         }
 
         while(!queue.isEmpty()){
-            Location tmp = queue.poll();
-            if(total == complete) {
-                result = box[tmp.row][tmp.column];
+            if (flag) {
+                break;
             }
-            else {
-                for(int i=0; i<4; i++) {
-                    int nx = tmp.row + dx[i];
-                    int ny = tmp.column + dy[i];
-                    if(nx >= 1 && nx <= 4 && ny >= 1 && ny <= 6 && check[nx][ny] == 0) {
+            Location tmp = queue.poll();
+            for(int i=0; i<4; i++) {
+                int nx = tmp.row + dx[i];
+                int ny = tmp.column + dy[i];
+                if(nx >= 1 && nx <= N && ny >= 1 && ny <= M) {
+                    while (check[nx][ny] == -1) {
+                        nx += dx[i];
+                        ny += dy[i];
+                        if(!(nx >= 1 && nx <= N && ny >= 1 && ny <= M)) {
+                            break;
+                        }
+                    }
+                    if(nx >= 1 && nx <= N && ny >= 1 && ny <= M && check[nx][ny] == 0) {
                         queue.add(new Location(nx, ny));
                         check[nx][ny] = 1;
                         box[nx][ny] = box[tmp.row][tmp.column] + 1;
                         complete++;
+                        if(total == complete) {
+                            result = box[nx][ny];
+                            flag = true;
+                        }
                     }
                 }
             }
         }
-
         System.out.print(result);
-
     }
 
     static class Location {
