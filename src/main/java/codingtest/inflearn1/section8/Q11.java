@@ -10,8 +10,7 @@ public class Q11 {
         int[][] path = new int[8][8];
         int[] dx = {-1, 0, 1, 0};
         int[] dy = {0, -1, 0, 1};
-        int count = 0;
-        boolean flag = false;
+        int result = -1;
 
         for(int i=1; i<=7; i++){
             for(int j=1; j<=7; j++) {
@@ -26,7 +25,7 @@ public class Q11 {
         while(!queue.isEmpty()) {
             Location poll = queue.poll();
             if(poll.row == 7 && poll.column==7){
-                flag = true;
+                result = path[7][7]-1;
                 break;
             }
             for(int i=0; i<4; i++) {
@@ -35,17 +34,11 @@ public class Q11 {
                 if(x >=1 && x <= 7 && y >=1 && y <= 7 && path[x][y] ==0) {
                     queue.add(new Location(x, y));
                     path[x][y] = 1;
+                    path[x][y] += path[poll.row][poll.column];
                 }
             }
-            count++;
         }
-
-        if (flag) {
-            System.out.println(count);
-
-        } else {
-            System.out.println(-1);
-        }
+        System.out.println(result);
     }
 
     static class Location {
