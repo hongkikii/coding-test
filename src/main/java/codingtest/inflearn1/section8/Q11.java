@@ -11,7 +11,6 @@ public class Q11 {
         int[][] check = new int[8][8];
         int[] dx = {-1, 0, 1, 0};
         int[] dy = {0, -1, 0, 1};
-        int result = -1;
 
         for(int i=1; i<=7; i++){
             for(int j=1; j<=7; j++) {
@@ -21,25 +20,21 @@ public class Q11 {
 
         Queue<Location> queue = new LinkedList<>();
         queue.add(new Location(1, 1));
-        check[1][1] = 1;
+        path[1][1] = 1;
 
         while(!queue.isEmpty()) {
             Location poll = queue.poll();
-            if(poll.row == 7 && poll.column==7){
-                result = path[7][7];
-                break;
-            }
             for(int i=0; i<4; i++) {
                 int x = poll.row + dx[i];
                 int y = poll.column + dy[i];
-                if(x >=1 && x <= 7 && y >=1 && y <= 7 && check[x][y] ==0) {
+                if(x >=1 && x <= 7 && y >=1 && y <= 7 && path[x][y] ==0) {
                     queue.add(new Location(x, y));
-                    check[x][y] = 1;
-                    path[x][y] = path[poll.row][poll.column] + 1;
+                    path[x][y] = 1;
+                    check[x][y] = check[poll.row][poll.column] + 1;
                 }
             }
         }
-        System.out.println(result);
+        System.out.println(check[7][7]);
     }
 
     static class Location {
