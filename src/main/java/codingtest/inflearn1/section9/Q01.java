@@ -1,6 +1,7 @@
 package main.java.codingtest.inflearn1.section9;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,24 +17,27 @@ public class Q01 {
             list.add(new Person(tall, weight));
         }
 
-        int result = N;
-        for(Person person : list) {
-            for(Person compare : list) {
-                if(person == compare){
-                    continue;
-                }
-                if(person.tall < compare.tall && person.weight < compare.weight) {
-                    result--;
-                    break;
-                }
+        Collections.sort(list);
+
+        int max = Integer.MIN_VALUE;
+        int result = 0;
+        for (Person person : list) {
+            if (person.weight > max) {
+                result++;
+                max = person.weight;
             }
         }
         System.out.println(result);
     }
 
-    static class Person{
+    static class Person implements Comparable<Person> {
         int tall;
         int weight;
+
+        @Override
+        public int compareTo(Person o) {
+            return o.tall - this.tall;
+        }
 
         public Person(int tall, int weight) {
             this.tall = tall;
