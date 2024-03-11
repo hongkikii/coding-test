@@ -1,24 +1,29 @@
 package main.java.codingtest.inflearn1.section9;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Q06 {
-    static Map<Integer, Integer> pairMap;
+    static List<ArrayList<Integer>> pairList;
     static boolean[] check;
     static String result;
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int student = sc.nextInt();
         int pair = sc.nextInt();
-        pairMap = new HashMap<>();
-        check = new boolean[student + 1];
+        pairList = new ArrayList<>();
+        check = new boolean[student+1];
+
+        for(int i=0; i<=student; i++) {
+            pairList.add(new ArrayList<>());
+        }
 
         for(int i=0; i<pair; i++) {
             int key = sc.nextInt();
             int value = sc.nextInt();
-            pairMap.put(key, value);
+            pairList.get(key).add(value);
+            pairList.get(value).add(key);
         }
 
         int one = sc.nextInt();
@@ -32,15 +37,16 @@ public class Q06 {
     }
 
     public static void find(int one, int another) {
-        if(pairMap.get(one) == null || check[one] == true) {
-            return;
-        }
-	    if(pairMap.get(one) == another) {
+        if(pairList.get(one).contains(another)) {
             result = "YES";
         }
-	    else {
+        else {
             check[one] = true;
-            find(pairMap.get(one), another);
+            for (int v : pairList.get(one)) {
+                if (check[v] == false) {
+                    find(v, another);
+                }
+            }
         }
     }
 }
