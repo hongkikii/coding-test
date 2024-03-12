@@ -1,52 +1,45 @@
 package main.java.codingtest.inflearn1.section9;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Q06 {
-    static List<ArrayList<Integer>> pairList;
-    static boolean[] check;
-    static String result;
-    public static void main(String[] args){
+    static int[] A;
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int student = sc.nextInt();
         int pair = sc.nextInt();
-        pairList = new ArrayList<>();
-        check = new boolean[student+1];
+        A = new int[student+1];
 
-        for(int i=0; i<=student; i++) {
-            pairList.add(new ArrayList<>());
+        for(int i=1; i<=student; i++) {
+            A[i] = i;
         }
 
+        // 쌍 , 유니온, 파인드
         for(int i=0; i<pair; i++) {
-            int key = sc.nextInt();
-            int value = sc.nextInt();
-            pairList.get(key).add(value);
-            pairList.get(value).add(key);
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            union(a, b);
         }
 
+        // 비교(find), 출력
         int one = sc.nextInt();
         int another = sc.nextInt();
-
-        result = "NO";
-        find(one, another);
-
-        System.out.println(result); // YES or NO
-
+        one = find(one);
+        another = find(another);
+        if(one == another) System.out.print("YES");
+        else System.out.print("NO");
     }
 
-    public static void find(int one, int another) {
-        if(pairList.get(one).contains(another)) {
-            result = "YES";
-        }
-        else {
-            check[one] = true;
-            for (int v : pairList.get(one)) {
-                if (check[v] == false) {
-                    find(v, another);
-                }
-            }
-        }
+
+    public static int find(int v) {
+        if(A[v] == v) return v;
+        else return A[v] = find(A[v]);
     }
+
+    public static void union(int a, int b) {
+        a = find(a);
+        b = find(b);
+        if(a != b) A[a] = b;
+    }
+
 }
