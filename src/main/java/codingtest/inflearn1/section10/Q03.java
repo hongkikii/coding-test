@@ -13,15 +13,17 @@ public class Q03 {
             A[i] = sc.nextInt();
         }
 
-        int answer = Integer.MIN_VALUE;
+        int answer = 1;
         result[0] = 1;
 
         for(int i=1; i<N; i++) {
-            for(int j=i; j>=0; j--) {
-                if(A[i] >= A[j]) {
-                    result[i] = Math.max(result[i], result[j] + 1);
+            int max = 0;
+            for(int j=i-1; j>=0; j--) {
+                if(A[i] > A[j] && max < result[j]) {
+                    max = result[j];
                 }
             }
+            result[i] = max + 1;
             answer = Math.max(answer, result[i]);
         }
         System.out.print(answer);
