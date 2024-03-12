@@ -1,6 +1,7 @@
 package main.java.codingtest.inflearn1.section10;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,14 +19,15 @@ public class Q04 {
             list.add(new Brick(bottom, height, weight));
         }
 
+        Collections.sort(list);
+
         int result = 0;
         A[0] = list.get(0).height;
 
         for(int i=1; i<N; i++) {
             int max = 0;
             for(int j=i-1; j>=0; j--) {
-                if(list.get(i).bottom < list.get(j).bottom &&
-                        list.get(i).weight < list.get(j).weight) {
+                if(list.get(i).weight < list.get(j).weight) {
                     max = Math.max(max, A[j]);
                 }
             }
@@ -35,7 +37,7 @@ public class Q04 {
         System.out.println(result);
     }
 
-    static class Brick {
+    static class Brick implements Comparable<Brick> {
         int bottom;
         int height;
         int weight;
@@ -44,6 +46,11 @@ public class Q04 {
             this.bottom = bottom;
             this.height  = height;
             this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Brick o) {
+            return o.bottom - this.bottom;
         }
     }
 
