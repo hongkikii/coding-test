@@ -5,21 +5,17 @@ class Q01 {
     public char[] solution(int n, int[][] ladder){
         char[] answer = new char[n];
 
-        for(int i=1; i<=n; i++) {
-            int idx = i;
-            char c = (char) ('A' + (i-1));
-            for(int j=0; j<ladder.length; j++) {
-                for(int k=0; k<ladder[j].length; k++) {
-                    if(ladder[j][k] == idx) {
-                        idx++;
-                        break;
-                    } else if (ladder[j][k] + 1 == idx) {
-                        idx--;
-                        break;
-                    }
-                }
+        for(int i=0; i<n; i++) {
+            answer[i] = (char) ('A' + i);
+        }
+
+        for(int j=0; j<ladder.length; j++) {
+            for(int k=0; k<ladder[j].length; k++) {
+                int start = ladder[j][k] - 1;
+                char tmp = answer[start];
+                answer[start] = answer[start+1];
+                answer[start+1] = tmp;
             }
-            answer[--idx] = c;
         }
         return answer;
     }
