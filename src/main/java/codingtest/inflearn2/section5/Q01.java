@@ -5,23 +5,15 @@ import java.util.Arrays;
 class Q01 {
     public int solution(int[] nums, int m){
         int answer = 0;
-        // 오름차순 정렬
-        // left - right 가능?
-        // ㅇㅇ => answer++; left++, right–
-        // ㄴㄴ => answer++; right–
-        // 언제까지 ? left<=right
         Arrays.sort(nums);
         int left = 0;
         int right = nums.length -1;
-        while(left< right)  {
+        while(left<= right)  {
             if(nums[left]+nums[right] <= m) {
                 left++;
             }
             answer++;
             right--;
-        }
-        if(left == right) {
-            answer++;
         }
         return answer;
     }
