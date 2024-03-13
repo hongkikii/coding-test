@@ -1,24 +1,24 @@
 package main.java.codingtest.inflearn2.section3;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 class Q01 {
     public int solution(int[] nums){
-        Arrays.sort(nums);
-        int answer = 1;
-        int tmp = 1;
+        int answer = 0;
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
 
-        for(int i=1; i<nums.length; i++) {
-            if(nums[i] == nums[i-1]) {
-                continue;
+        for (int v : set) {
+            if(set.contains(v-1)) continue;
+            int count = 0;
+            while (set.contains(v)) {
+                count++;
+                v++;
             }
-
-            if (nums[i] == nums[i - 1] + 1) {
-                tmp++;
-                answer = Math.max(tmp, answer);
-            } else {
-                tmp = 0;
-            }
+            answer = Math.max(answer, count);
         }
         return answer;
     }
