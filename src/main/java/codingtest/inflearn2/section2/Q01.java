@@ -1,32 +1,28 @@
 package main.java.codingtest.inflearn2.section2;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 class Q01 {
     public int solution(String s){
-        int answer = -1;
-        Set<Character> set = new HashSet<>();
-        Set<Character> duplicateSet = new HashSet<>();
+        int answer = Integer.MAX_VALUE;
+        Map<Character, Integer> map = new HashMap<>();
 
-        for(int i=0; i<s.length(); i++) {
-            char c = s.charAt(i);
-            if(set.contains(c)) {
-                duplicateSet.add(c);
-                int tmp = answer;
-                answer = -1;
-                for(int j=tmp-1; j<=i; j++) {
-                    if(!duplicateSet.contains(s.charAt(j))) {
-                        answer = j+1;
-                        break;
-                    }
-                }
-            }
-            else {
-                set.add(c);
-                if(answer == -1) answer = i+1;
+        for (char c : s.toCharArray()) {
+            if (map.get(c) == null) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
             }
         }
+
+        for (Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                answer = Math.min(s.indexOf(entry.getKey())+1, answer);
+            }
+        }
+        if(answer == Integer.MAX_VALUE) answer = -1;
         return answer;
     }
 
