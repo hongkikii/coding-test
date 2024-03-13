@@ -9,12 +9,11 @@ class Q01 {
             answer[i] = (char) ('A' + i);
         }
 
-        for(int j=0; j<ladder.length; j++) {
-            for(int k=0; k<ladder[j].length; k++) {
-                int start = ladder[j][k] - 1;
-                char tmp = answer[start];
-                answer[start] = answer[start+1];
-                answer[start+1] = tmp;
+        for(int[] line : ladder) {
+            for(int v : line) {
+                char tmp = answer[v-1];
+                answer[v-1] = answer[v];
+                answer[v] = tmp;
             }
         }
         return answer;
