@@ -6,23 +6,19 @@ import java.util.Map.Entry;
 
 class Q01 {
     public int solution(String s){
-        int answer = Integer.MAX_VALUE;
+        int answer = -1;
         Map<Character, Integer> map = new HashMap<>();
 
         for (char c : s.toCharArray()) {
-            if (map.get(c) == null) {
-                map.put(c, 1);
-            } else {
-                map.put(c, map.get(c) + 1);
-            }
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
-        for (Entry<Character, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == 1) {
-                answer = Math.min(s.indexOf(entry.getKey())+1, answer);
+        for (int i = 0; i < s.length(); i++) {
+            if (map.get(s.charAt(i)) == 1) {
+                answer = i + 1;
+                break;
             }
         }
-        if(answer == Integer.MAX_VALUE) answer = -1;
         return answer;
     }
 
