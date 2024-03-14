@@ -2,46 +2,52 @@ package main.java.codingtest.inflearn2.section8;
 
 import java.util.*;
 class Q01 {
-    int min;
-    int tmp;
-    int end;
-    int loop;
-    boolean[] check;
-    int[][] copyFlights;
-
     public int solution(int n, int[][] flights, int s, int e, int k){
-        copyFlights = flights;
-        end = e;
-        loop = k;
-        check = new boolean[n];
-        min = Integer.MAX_VALUE;
-        tmp = Integer.MAX_VALUE;
-        DFS(s, 0,-1);
-        if(min == Integer.MAX_VALUE) return -1;
-        return min;
-    }
-
-    public void DFS(int idx, int sum, int level) {
-        if(idx == end) {
-            tmp = sum;
-            return;
+        int[] cost = new int[n];
+        Arrays.fill(cost, Integer.MAX_VALUE);
+        List<List<City>> list = new ArrayList<>();
+        for(int i=0; i<n; i++) {
+            list.add(new ArrayList<>());
         }
-        if(level == loop)  {
-            tmp = Integer.MAX_VALUE;
+        for(int i=0; i<flights.length; i++) {
+            list.get(flights[i][0]).add(new City(flights[i][1], flights[i][2]));
         }
-        else {
-            for(int i=0; i<copyFlights.length; i++) {
-                if(copyFlights[i][0] == idx) {
-                    if (!check[copyFlights[i][1]]) {
-                        check[copyFlights[i][1]] = true;
-                        DFS(copyFlights[i][1], sum + copyFlights[i][2], level + 1);
-                        min = Math.min(min, tmp);
-                        check[copyFlights[i][1]] = false;
+        Queue<City> queue = new LinkedList<>();
+        queue.add(new City(s, 0));
+        cost[s] = 0;
+        int level = 0;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            for(int i=0; i<size; i++) {
+                City poll = queue.poll();
+                int now = poll.end;
+                int nowCost = poll.cost;
+                for(City c : list.get(now)) {
+                    int next = c.end;
+                    int nextCost = c.cost;
+                    if(nowCost + nextCost < cost[next]) {
+                        cost[next] = nowCost + nextCost;
+                        queue.add(new City(next, cost[next]));
                     }
                 }
             }
+            level++;
+            if(level > k) break;
+        }
+
+        if(cost[e] == Integer.MAX_VALUE) return -1;
+        return cost[e];
+    }
+
+    class City {
+        int end;
+        int cost;
+        public City(int end, int cost) {
+            this.end = end;
+            this.cost = cost;
         }
     }
+
     public static void main(String[] args){
         Q01 T = new Q01();
         System.out.println(T.solution(5, new int[][]{{0, 1, 10}, {1, 2, 20}, {0, 2, 70}, {0, 3, 100}, {1, 3, 80}, {2, 3, 10}, {2, 4, 30}, {3, 4, 10}}, 0, 3, 1));
@@ -51,3 +57,4 @@ class Q01 {
         System.out.println(T.solution(4, new int[][]{{0, 3, 59},{2, 0, 83}, {3, 1, 16}, {1, 3, 16}}, 3, 0, 3));
     }
 }
+
