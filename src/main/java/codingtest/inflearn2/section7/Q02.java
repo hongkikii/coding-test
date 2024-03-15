@@ -5,13 +5,17 @@ import java.util.*;
 class Q02 {
     public int solution(int[] pool, int a, int b, int home){
         int answer = -1;
-        boolean[] nope = new boolean[10001];
+        boolean[][] check = new boolean[2][10001];
         for(int v : pool) {
-            nope[v] = true;
+            check[0][v] = true;
+            check[1][v] = true;
         }
         Queue<Move> queue = new LinkedList<>();
         queue.add(new Move(0, false));
         int level = 0;
+        check[0][0] = true;
+        check[1][0] = true;
+
         while(!queue.isEmpty()) {
             int size = queue.size();
             for(int i=0; i<size; i++) {
@@ -20,13 +24,13 @@ class Q02 {
                 if(current == home) return level;
                 int nextFront = current+a;
                 int nextBack = current-b;
-                if(nextFront <= 10000  && !nope[nextFront]) {
+                if(nextFront <= 10000  && !check[0][nextFront]) {
+                    check[0][nextFront] = true;
                     queue.add(new Move(nextFront, false));
                 }
-                if(nextBack > 0 && !nope[nextBack]) {
-                    if(!poll.back) {
-                        queue.add(new Move(nextBack, true));
-                    }
+                if(nextBack > 0 && !check[1][nextBack] && !poll.back) {
+                    check[1][nextBack] = true;
+                    queue.add(new Move(nextBack, true));
                 }
             }
             level++;
