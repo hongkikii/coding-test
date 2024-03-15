@@ -3,21 +3,21 @@ package main.java.codingtest.inflearn2.section4;
 import java.util.*;
 class Q02 {
     public int[] solution(int[] nums){
-        int length = nums.length;
-        int[] answer = new int[length / 2];
-        int idx = answer.length-1;
+        int[] answer = new int[nums.length / 2];
+        int idx = 0;
         Arrays.sort(nums);
-        for(int i=length-1; i>=0; i--) {
-            if(nums[i] == 0) continue;
-            int half = nums[i] / 2;
-            for(int j=i-1; j>=0; j--) {
-                if(nums[j] == 0) continue;
-                if(half == nums[j]) {
-                    answer[idx] = nums[j];
-                    idx--;
-                    nums[j] = 0;
-                    break;
-                }
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int v : nums) {
+            map.put(v, map.getOrDefault(v, 0) + 1);
+        }
+
+        for(int v : nums) {
+            if(map.get(v) != 0) {
+                answer[idx] = v;
+                map.put(v, map.get(v)-1);
+                map.put(v * 2, map.get(v * 2) - 1);
+                idx++;
             }
         }
         return answer;
@@ -30,5 +30,6 @@ class Q02 {
         System.out.println(Arrays.toString(T.solution(new int[]{14, 4, 2, 6, 3, 10, 10, 5, 5, 7, 7, 14})));
     }
 }
+
 
 
