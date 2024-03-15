@@ -6,15 +6,12 @@ class Q02 {
     public int solution(int[] pool, int a, int b, int home){
         int answer = -1;
         boolean[] nope = new boolean[10001];
-        boolean[] check = new boolean[10001];
         for(int v : pool) {
             nope[v] = true;
         }
         Queue<Move> queue = new LinkedList<>();
-        queue.add(new Move(a, false));
-        check[0] = true;
-        check[a] = true;
-        int level = 1;
+        queue.add(new Move(0, false));
+        int level = 0;
         while(!queue.isEmpty()) {
             int size = queue.size();
             for(int i=0; i<size; i++) {
@@ -23,13 +20,11 @@ class Q02 {
                 if(current == home) return level;
                 int nextFront = current+a;
                 int nextBack = current-b;
-                if(nextFront <= 10000 && !check[nextFront] && !nope[nextFront]) {
-                    check[nextFront] = true;
+                if(nextFront <= 10000  && !nope[nextFront]) {
                     queue.add(new Move(nextFront, false));
                 }
-                if(nextBack > 0 && !check[nextBack] && !nope[nextBack]) {
+                if(nextBack > 0 && !nope[nextBack]) {
                     if(!poll.back) {
-                        check[nextBack] = true;
                         queue.add(new Move(nextBack, true));
                     }
                 }
