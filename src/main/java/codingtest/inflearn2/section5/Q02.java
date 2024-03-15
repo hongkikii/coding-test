@@ -4,25 +4,18 @@ import java.util.*;
 class Q02 {
     public int solution(int[] nums){
         int answer = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        for(int v : nums) {
-            map.put(v, map.getOrDefault(v, 0) + 1);
-        }
+        int left = 0;
+        int right = nums.length -1;
         Arrays.sort(nums);
-
-        for(int j=nums.length-1; j>=0; j--) {
-            int v = nums[j];
-            if(map.get(v) != 0) {
-                if (v != 5 && v != 4) {
-                    for (int i = 5 - v; i >= 2; i--) {
-                        if (map.getOrDefault(i, 0) != 0) {
-                            map.put(i, map.get(i) - 1);
-                            break;
-                        }
-                    }
-                }
+        while (left <= right) {
+            if (nums[left] + nums[right] <= 5) {
                 answer++;
-                map.put(v, map.get(v)-1);
+                left++;
+                right--;
+            }
+            else {
+                answer++;
+                right--;
             }
         }
         return answer;
