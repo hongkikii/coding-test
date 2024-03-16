@@ -13,7 +13,6 @@ class Q03 {
         Set<Integer> set = new HashSet<>();
         for(Entry<Character, Integer> entry : map.entrySet()) {
             int value = entry.getValue();
-            if(value ==0) continue;
             while(set.contains(value)) {
                 value--;
                 answer++;
