@@ -19,12 +19,10 @@ class Q03 {
         for(Points points : list) {
             if(points.left <= s) {
                 e = Math.max(e, points.right);
-                if(e >= n) {
-                    return ++answer;
-                }
             }
             else {
                 answer++;
+                if(e == n) return answer;
                 s = e;
             }
         }
