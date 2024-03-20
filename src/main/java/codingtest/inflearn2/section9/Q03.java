@@ -16,10 +16,6 @@ public class Q03 {
             System.out.println(A[1]);
             return;
         }
-        if(n==2) {
-            System.out.println(A[1]+A[2]);
-            return;
-        }
         score[1] = A[1];
         score[2] = A[1] + A[2];
         for(int i=3; i<=n; i++) {
