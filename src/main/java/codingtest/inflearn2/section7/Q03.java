@@ -8,12 +8,13 @@ class Q03 {
         boolean[] checkPerson = new boolean[200001];
         queue.add(new Point(s, e));
         checkPerson[s] = true;
+        int move = 1;
         while(!queue.isEmpty()) {
             answer++;
             int size = queue.size();
             for(int i=0; i<size; i++) {
                 Point point = queue.poll();
-                int nextCow = point.cow +1;
+                int nextCow = point.cow + move++;
                 if(nextCow > 200000) return -1;
                 int nextPerson1 = point.person + 1;
                 int nextPerson2 = point.person - 1;
