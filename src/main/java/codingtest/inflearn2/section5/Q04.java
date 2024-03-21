@@ -29,8 +29,7 @@ class Q04 {
 
         @Override
         public int compareTo(Plant o) {
-            if(this.plant == o.plant) return this.grow - o.grow;
-            return this.plant - o.plant;
+            return o.grow - this.grow;
         }
     }
 
