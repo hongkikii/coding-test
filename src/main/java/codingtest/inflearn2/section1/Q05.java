@@ -14,14 +14,15 @@ class Solution {
         }
         for (int idx : peaks) {
             int count = 1;
-            int condition = idx;
-            while (idx >= 1 && nums[idx] > nums[idx - 1]) {
+            int left = idx;
+            int right = idx;
+            while (left >= 1 && nums[left] > nums[left - 1]) {
                 count++;
-                idx--;
+                left--;
             }
-            while (condition <= nums.length -2 && nums[condition] > nums[condition + 1]) {
+            while (right <= nums.length -2 && nums[right] > nums[right + 1]) {
                 count++;
-                condition++;
+                right++;
             }
             answer = Math.max(answer, count);
         }
