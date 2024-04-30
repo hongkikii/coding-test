@@ -1,24 +1,16 @@
 package main.java.codingtest.leetcode.hashMap;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Q383 {
     public boolean canConstruct(String ransomNote, String magazine) {
-        Map<Character, Integer> magazineToHashMap = new HashMap<>();
         char[] magazineToCharArray = magazine.toCharArray();
-        for(char element : magazineToCharArray) {
-            magazineToHashMap.put(element, magazineToHashMap.getOrDefault(element, 0) + 1);
-        }
-
         char[] ransomNoteToCharArray = ransomNote.toCharArray();
+        int[] alphabet = new int[26];
+        for(char element : magazineToCharArray) {
+            alphabet[element - 97]++;
+        }
         for(char element : ransomNoteToCharArray) {
-            if(magazineToHashMap.containsKey(element) && magazineToHashMap.get(element) > 0) {
-                magazineToHashMap.replace(element, magazineToHashMap.get(element)-1);
-            }
-            else {
-                return false;
-            }
+            int target = --alphabet[element - 97];
+            if(target < 0) return false;
         }
         return true;
     }
