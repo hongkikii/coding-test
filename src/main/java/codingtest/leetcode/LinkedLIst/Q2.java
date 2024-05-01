@@ -1,43 +1,51 @@
 package main.java.codingtest.leetcode.LinkedLIst;
 
+import java.math.BigInteger;
+
 public class Q2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         StringBuilder node1 = new StringBuilder();
         StringBuilder node2 = new StringBuilder();
 
         while(l1 != null) {
-            node1.append(l1.val);
+            node1.append(String.valueOf(l1.val));
             l1 = l1.next;
         }
 
         while(l2 != null) {
-            node2.append(l2.val);
+            node2.append(String.valueOf(l2.val));
             l2 = l2.next;
         }
 
         node1 = node1.reverse();
         node2 = node2.reverse();
 
-        int node1Num = Integer.parseInt(node1.toString());
-        int node2Num = Integer.parseInt(node2.toString());
+        BigInteger node1Num = new BigInteger(node1.toString());
+        BigInteger node2Num = new BigInteger(node2.toString());
 
-        int resultNum = node1Num + node2Num;
+        BigInteger resultNum = node1Num.add(node2Num);
 
+        if(resultNum.divide(BigInteger.TEN).equals(BigInteger.ZERO)) {
+            ListNode result = new ListNode(resultNum.mod(BigInteger.TEN).intValue());
+            return result;
+        }
         ListNode next = new ListNode();
-        ListNode result = new ListNode(resultNum % 10, next);
-        resultNum /= 10;
+        ListNode result = new ListNode(resultNum.mod(BigInteger.TEN).intValue(), next);
+        resultNum = resultNum.divide(BigInteger.TEN);
 
-        while(resultNum != 0) {
-            next.val = resultNum % 10;
+        while(true) {
+            next.val = resultNum.mod(BigInteger.TEN).intValue();
+            resultNum = resultNum.divide(BigInteger.TEN);
+            if(resultNum.equals(BigInteger.ZERO)) break;
             ListNode newNode = new ListNode();
             next.next = newNode;
             next = newNode;
-            resultNum /= 10;
         }
+
         return result;
     }
 
-    public class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
         ListNode() {}
