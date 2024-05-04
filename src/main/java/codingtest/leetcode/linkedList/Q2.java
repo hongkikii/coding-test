@@ -1,9 +1,10 @@
-package main.java.codingtest.leetcode.LinkedLIst;
+package main.java.codingtest.leetcode.linkedList;
 
-import java.math.BigInteger;
+import java.math.*;
 
-public class Q2 {
+class Q2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
         StringBuilder node1 = new StringBuilder();
         StringBuilder node2 = new StringBuilder();
 
