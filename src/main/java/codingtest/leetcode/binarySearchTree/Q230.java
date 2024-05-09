@@ -1,23 +1,25 @@
 package main.java.codingtest.leetcode.binarySearchTree;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Q230 {
+    List<Integer> result;
 
     public int kthSmallest(TreeNode root, int k) {
-        return inOrderTraversal(root, k, 0);
+        result = new ArrayList<>();
+        inOrderTraversal(root, k);
+        return result.get(k-1);
     }
 
-    private int inOrderTraversal(TreeNode node, int k, int current) {
-        if(current == k) {
-            return node.val;
+    private void inOrderTraversal(TreeNode node, int k) {
+        if(result.size() == k) return;
+        else {
+            if(node.left != null) inOrderTraversal(node.left, k);
+            result.add(node.val);
+            if(node.right != null) inOrderTraversal(node.right, k);
         }
-        if(node.left != null) {
-            inOrderTraversal(node.left, k, ++current);
-        }
-        if(node.right != null) {
-            inOrderTraversal(node.right, k, ++current);
-        }
-        return -1;
     }
 
     class TreeNode {
