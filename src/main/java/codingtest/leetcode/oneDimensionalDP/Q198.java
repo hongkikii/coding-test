@@ -8,9 +8,7 @@ public class Q198 {
         if(length > 1) max[1] = Math.max(nums[0], nums[1]);
 
         for(int i=2; i<length; i++) {
-            for(int j=i; j<length; j++) {
-                max[j] = Math.max(max[j-2]+nums[j], max[j-1]);
-            }
+            max[i] = Math.max(max[i-2]+nums[i], max[i-1]);
         }
         return max[length-1];
     }
