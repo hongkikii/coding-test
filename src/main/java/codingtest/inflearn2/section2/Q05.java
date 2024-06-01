@@ -20,7 +20,7 @@ class Q05 {
             votedAndCount.put(info[1], votedAndCount.getOrDefault(info[1], 0)+1);
         }
         candidates = votedAndCount.entrySet().stream()
-                .filter(entry -> entry.getValue() > k)
+                .filter(entry -> entry.getValue() >= k)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
 
@@ -33,15 +33,15 @@ class Q05 {
         int maxValue = Integer.MIN_VALUE;
         for(Entry<String, Integer> entry : votingAndCount.entrySet()) {
             if(entry.getValue() > maxValue) {
+                maxValue = entry.getValue();
                 answer = entry.getKey();
             }
-            if(entry.getValue() == maxValue) {
+            else if(entry.getValue() == maxValue) {
                 if(entry.getKey().compareTo(answer) < 0) {
                     answer = entry.getKey();
                 }
             }
         }
-
         return answer;
     }
 
