@@ -21,15 +21,17 @@ class Q06 {
         for (int i = 0; i < studentNum - 1; i++) {
             if (!isTranslated[i]) {
                 for (int j = i + 1; j < studentNum; j++) {
-                    int iIdx = minFruits[i][0];
-                    int jIdx = minFruits[j][0];
-                    if (iIdx != jIdx) {
-                        if (fruit[i][jIdx] != 0 && fruit[j][iIdx] != 0) {
-                            minFruits[i][1] += 1;
-                            minFruits[j][1] += 1;
-                            isTranslated[i] = true;
-                            isTranslated[j] = true;
-                            break;
+                    if(!isTranslated[j]) {
+                        int iIdx = minFruits[i][0];
+                        int jIdx = minFruits[j][0];
+                        if (iIdx != jIdx && fruit[i][jIdx] > 0 && fruit[j][iIdx] > 0) {
+                            if(minFruits[i][1]+1 < fruit[i][jIdx] && minFruits[j][1]+1 < fruit[j][iIdx]) {
+                                minFruits[i][1] += 1;
+                                minFruits[j][1] += 1;
+                                isTranslated[i] = true;
+                                isTranslated[j] = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -45,7 +47,8 @@ class Q06 {
         Q06 T = new Q06();
         System.out.println(
                 T.solution(new int[][]{{10, 20, 30}, {12, 15, 20}, {20, 12, 15}, {15, 20, 10}, {10, 15, 10}}));
-        System.out.println(T.solution(new int[][]{{10, 9, 11}, {15, 20, 25}}));
+        System.out.println(
+                T.solution(new int[][]{{10, 9, 11}, {15, 20, 25}}));
         System.out.println(
                 T.solution(new int[][]{{0, 3, 27}, {20, 5, 5}, {19, 5, 6}, {10, 10, 10}, {15, 10, 5}, {3, 7, 20}}));
         System.out.println(
