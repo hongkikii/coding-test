@@ -17,13 +17,14 @@ class Q05 {
         for(int i=0; i<=10000; i++) {
             if(finishTime == i) isFinished = true;
             while(!works.isEmpty() && works.peek().callTime == i) {
-                int num = works.poll().idx;
-                waitingPlace.add(new ExecutingInfo(num, tasks[num][1]));
+                int idx = works.poll().idx;
+                waitingPlace.add(new ExecutingInfo(idx, tasks[idx][1]));
             }
             if(!waitingPlace.isEmpty() && isFinished) {
                 ExecutingInfo work = waitingPlace.poll();
                 answer[answerIdx++] = work.idx;
                 finishTime = work.executingTime + i;
+                isFinished = false;
             }
             if(works.isEmpty() && waitingPlace.isEmpty()) break;
         }
