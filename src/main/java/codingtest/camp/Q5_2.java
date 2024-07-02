@@ -17,17 +17,12 @@ public class Q5_2 {
         while(!queue.isEmpty()) {
             int currentDay = queue.poll();
             int value = 1;
-            if(queue.isEmpty()) {
-                answer.add(value);
-                break;
-            }
             while(!queue.isEmpty() && queue.peek() <= currentDay) {
                 queue.poll();
                 value++;
             }
             answer.add(value);
         }
-
         return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
