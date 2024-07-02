@@ -11,10 +11,8 @@ public class Q4_2 {
         }
         for(String name : completion) {
             map.put(name, map.get(name) -1);
+            if(map.get(name) == 0) map.remove(name);
         }
-        for(String key : map.keySet()) {
-            if(map.get(key) > 0) return key;
-        }
-        return "";
+        return map.keySet().iterator().next();
     }
 }
