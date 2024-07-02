@@ -21,7 +21,7 @@ public class Q5_2 {
                 answer.add(value);
                 break;
             }
-            while(!queue.isEmpty() && queue.peek() < currentDay) {
+            while(!queue.isEmpty() && queue.peek() <= currentDay) {
                 queue.poll();
                 value++;
             }
