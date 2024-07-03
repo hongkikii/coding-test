@@ -11,7 +11,7 @@ public class Q6_3 {
                     sb.append(c);
                 }
             }
-            if(currentSkill.equals(sb.toString())) answer++;
+            if(skill.startsWith(sb.toString())) answer++;
         }
         return answer;
     }
