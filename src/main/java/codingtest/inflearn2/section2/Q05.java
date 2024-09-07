@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 class Q05 {
     public String solution(String[] votes, int k){
         int voteCount = votes.length;
-        String answer = " ";
+//        String answer = " ";
         Map<String, Integer> votedAndCount = new HashMap<>();
         List<String> candidates;
         String[][] votedAndVoting = new String[voteCount][2];
@@ -22,7 +22,7 @@ class Q05 {
         candidates = votedAndCount.entrySet().stream()
                 .filter(entry -> entry.getValue() >= k)
                 .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+                .toList();
 
         for(int i=0; i<votedAndVoting.length; i++) {
             if(candidates.contains(votedAndVoting[i][0])) {
@@ -30,19 +30,25 @@ class Q05 {
             }
         }
 
-        int maxValue = Integer.MIN_VALUE;
-        for(Entry<String, Integer> entry : votingAndCount.entrySet()) {
-            if(entry.getValue() > maxValue) {
-                maxValue = entry.getValue();
-                answer = entry.getKey();
-            }
-            else if(entry.getValue() == maxValue) {
-                if(entry.getKey().compareTo(answer) < 0) {
-                    answer = entry.getKey();
-                }
-            }
-        }
-        return answer;
+//        int maxValue = Integer.MIN_VALUE;
+//        for(Entry<String, Integer> entry : votingAndCount.entrySet()) {
+//            if(entry.getValue() > maxValue) {
+//                maxValue = entry.getValue();
+//                answer = entry.getKey();
+//            }
+//            else if(entry.getValue() == maxValue) {
+//                if(entry.getKey().compareTo(answer) < 0) {
+//                    answer = entry.getKey();
+//                }
+//            }
+//        }
+//                return answer;
+
+        // reverseOrder() 사용 안 할 경우, compareTo() 결과가 양수인 조건 적용
+        return votingAndCount.entrySet().stream()
+                .max(Comparator.comparing(Map.Entry<String, Integer>::getValue)
+                        .thenComparing(Map.Entry::getKey, Comparator.reverseOrder()))
+                .get().getKey();
     }
 
     public static void main(String[] args){
