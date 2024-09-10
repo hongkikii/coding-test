@@ -2,31 +2,25 @@ package main.java.codingtest.leetcode.heap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Q373 {
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<List<Integer>> answer = new ArrayList<>();
-        int leftPointer = 0;
-        int rightPointer = 0;
-        int count = 0;
-        List<Integer> firstPair = new ArrayList<>();
-        firstPair.add(nums1[leftPointer]);
-        firstPair.add(nums2[rightPointer]);
-        answer.add(firstPair);
-        count++;
-        while(count < k) {
+        Queue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[0] + a[1] - b[0] - b[1]);
+        for(int i=0; i<nums1.length; i++) {
+            for(int j=0; j<nums2.length; j++) {
+                minHeap.add(new int[]{nums1[i], nums2[j]});
+            }
+        }
+        while(k > 0) {
             List<Integer> pair = new ArrayList<>();
-
-            if(nums1[leftPointer+1] + nums2[rightPointer] <= nums1[leftPointer] + nums2[rightPointer+1]) {
-                leftPointer++;
-            }
-            else {
-                rightPointer++;
-            }
-            pair.add(nums1[leftPointer]);
-            pair.add(nums2[rightPointer]);
+            int[] min = minHeap.poll();
+            pair.add(min[0]);
+            pair.add(min[1]);
             answer.add(pair);
-            count++;
+            k--;
         }
         return answer;
     }
